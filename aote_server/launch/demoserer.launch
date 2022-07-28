@@ -1,0 +1,5 @@
+<launch>
+  
+  <node pkg="aote_server"  type="AddInts_Server"  name="add" output="screen"/>
+  <node pkg="aote_server"  type="AddInts_Client"  name="AddInts_Client" args = "1 2 " output="screen"/>
+ </launch>

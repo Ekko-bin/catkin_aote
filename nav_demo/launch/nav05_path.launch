@@ -1,0 +1,15 @@
+<launch>
+
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" clear_params="true">
+       <!--代价地图的通用参数-->
+        <rosparam file="$(find nav_demo)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find nav_demo)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <!--局部地图的参数-->
+        <rosparam file="$(find nav_demo)/param/local_costmap_params.yaml" command="load" />
+        <!--全局地图的参数-->
+        <rosparam file="$(find nav_demo)/param/global_costmap_params.yaml" command="load" />
+        <!--底盘的路径规划参数-->
+        <rosparam file="$(find nav_demo)/param/base_local_planner_params.yaml" command="load" />
+    </node>
+
+</launch>

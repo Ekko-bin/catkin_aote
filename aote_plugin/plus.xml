@@ -1,0 +1,16 @@
+<!-- 插件库的相对路径 
+    需要定位动态链接库
+      library根标签下的path属性
+    声明子类 父类
+
+-->
+<library path="lib/libplus">  <!--库的名字-->
+  <!-- type="插件类  子类" base_class_type="基类，父类" -->
+  <class type="dbx_plugin_ns::SanBian" base_class_type="dbx_base_ns::Dbx_Base">
+    <!-- 描述信息 -->
+    <description>This 三边形插件 plugin.</description>
+  </class>
+  <class type="dbx_plugin_ns::SiBian" base_class_type="dbx_base_ns::Dbx_Base">
+    <description>This 四边形插件 plugin.</description>
+
+  </class>

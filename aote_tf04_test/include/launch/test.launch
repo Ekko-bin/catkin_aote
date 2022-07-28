@@ -1,0 +1,26 @@
+<!--
+    tf2 实现小乌龟跟随案例
+-->
+<launch>
+    <!-- 启动乌龟节点与键盘控制节点 -->
+    <node pkg="turtlesim" type="turtlesim_node" name="turtlekk" output="screen" />
+    <node pkg="turtlesim" type="turtle_teleop_key" name="key_control" output="screen">
+         <!--<remap from = "turtle1/cmd_vel" to = "turtle2/cmd_vel" />-->
+    </node>
+    
+
+    <!-- 启动创建第二只乌龟的节点 -->
+    <node pkg="aote_tf04_test" type="test01_new_turtle" name="jiabin" output="screen" >
+      
+    </node>
+    
+    <!-- 启动两个坐标发布节点 -->
+     <!-- 节点启动一次，但是启动两次，用传参的方式  得出每个坐标系相对于世界坐标的关系并且发布 -->
+    <node pkg="aote_tf04_test" type="test02_pub_turtle" name="pub1"  args="turtle1" />
+    <node pkg="aote_tf04_test" type="test02_pub_turtle" name="pub2"  args="turtle2" />
+     
+      <!-- 订阅turtle1 turtle2 相对于世界坐标系的坐标，并转化为两个的相对位置关系(相当于多坐标变换)
+        ，再生成速度信息-->
+
+    <node pkg="aote_tf04_test" type="test03_control_turtle" name="control"  />
+</launch>

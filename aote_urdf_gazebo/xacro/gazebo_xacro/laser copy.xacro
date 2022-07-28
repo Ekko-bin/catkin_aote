@@ -1,0 +1,51 @@
+<robot name="my_sensors" xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <!-- 雷达 -->
+  <!--  把reference 改为自己雷达的link名字-->
+  <gazebo reference="laser">
+    <sensor type="ray" name="rplidar">
+      <!--雷达的位姿-->
+      <pose>0 0 0 1.57*2  0 0</pose>
+      <!--雷达光线是否可见-->
+      <visualize>true</visualize>
+      <!--雷达射线的更新频率 1s 5.5次-->
+      <update_rate>5.5</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <!--雷达参数-->
+            <!--雷达旋转一周采样多少个点-->
+            <samples>360</samples>
+            <!--分辨率 1 每个射线都测距  n n个射线有一个测距-->
+            <resolution>1</resolution>
+            <!--雷达的采样范围 弧度-->
+            <min_angle>-3</min_angle>
+            <!-- 雷达的采样范围  弧度-->
+            <max_angle>3</max_angle>
+          </horizontal>
+        </scan>
+
+        <range>
+        <!--雷达的采样范围 最下和最大-->
+          <min>0.10</min>
+          <max>30.0</max>
+           <!-- 采样的精度 米为单位-->
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+        <!--高斯噪音 模拟误差-->
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_rplidar" filename="libgazebo_ros_laser.so">
+         <!--雷达发布数据的话题-->
+        <topicName>/jiabinscan_topic</topicName>
+        <!--fram的名字和雷达的link名字一样-->
+        <frameName>laser</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</robot>

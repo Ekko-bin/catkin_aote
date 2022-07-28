@@ -1,0 +1,136 @@
+<robot name = "mycar">
+   <!--添加base_footprint-->
+   <!--里面有很多错误-->
+   <link name = "base_footprint">
+      <visual>
+          <geometry>
+             <sphere  radius = "0.001">
+          </geometry>
+      </visual>
+   </link>
+
+    <!--添加底盘-->
+    <!--
+        形状:圆柱
+        半径: 0.1
+        高度:0.08
+        离地间距:0.015
+    -->
+    <link name = "base_link" >
+         <visual>
+           <geometry>
+              <cylinder radius = "0.1" length = "0.08"/>
+           </geometry>
+  
+           <origin xyz = "0 0 0" rpy = "0 0 0 "/>
+           <material name = "base_link_color">
+               <color rgba = "1 0.5 0.2 1 "/>            
+           </material>
+         </visual>
+    </link>
+
+    <!--添加驱动轮-->
+    <!--
+        形状:圆柱
+        半径:0.035m
+        高度:0.015m
+    -->
+     <link name = "left_wheel" >
+         <visual>
+           <geometry>
+              <cylinder radius = "0.035" length = "0.015"/>
+           </geometry>
+           <origin xyz = "0 0 0" rpy = "1.5708 0 0 "/>
+           <material name = "wheel_color">
+               <color rgba = "0 0 0 1 "/>            
+           </material>
+         </visual>
+    </link>
+
+     <link name = "right_wheel" >
+         <visual>
+           <geometry>
+              <cylinder radius = "0.035" length = "0.015"/>
+           </geometry>
+           <origin xyz = "0 0 0" rpy = "1.5708 0 0 "/>
+           <material name = "wheel_color">
+               <color rgba = "0 0 0 1 "/>            
+           </material>
+         </visual>
+    </link>
+
+     <!--添加万向轮-->
+     <!--
+       形状:球
+       半径:0.0075米
+     -->
+    
+     <link name = "front_wheel" >
+         <visual>
+           <geometry>
+              <sphere radius = "0.0075"/>
+           </geometry>
+           <origin xyz = "0 0 0" rpy = "1.5708 0 0 "/>
+           <material name = "wheel_color">
+               <color rgba = "0 0 0 1 "/>            
+           </material>
+         </visual>
+    </link>
+
+    <link name = "back_wheel" >
+         <visual>
+           <geometry>
+              <sphere radius = "0.0075"/>
+           </geometry>
+           <origin xyz = "0 0 0" rpy = "1.5708 0 0 "/>
+           <material name = "wheel_color">
+               <color rgba = "0 0 0 1 "/>            
+           </material>
+         </visual>
+    </link>
+
+
+  
+    <!--joint 底盘+foot_print-->
+    <joint name = "link2footprint" type = "fixed">
+      <parent   link = "base_footprint"/>
+      <child link = "left_wheel"/>
+      <!--z = 车体高度/2 + 离地间距-->
+      <origin xyz = "0 0 0.055" rpy = "0 0 0"/>
+    </joint>
+
+    <!--joint 底盘+轮子-->
+    <joint name = "left2link" type = "continuous">
+      <parent   link = "base_link"/>
+      <child link = "base_link"/>
+      <!--z = 车体高度/2 + 离地间距- 轮子半径-->
+      <origin xyz = "0 0.1 -0.02" rpy = "0 0 0"/>
+      <axis xyz = "0 1 0"/>
+    </joint>
+
+    <joint name = "right2link" type = "continuous">
+      <parent   link = "base_link"/>
+      <child link = "base_link"/>
+      <!--z = 车体高度/2 + 离地间距- 轮子半径-->
+      <origin xyz = "0 -0.1 -0.02" rpy = "0 0 0"/>
+      <axis xyz = "0 1 0"/>
+    </joint>
+
+    <!--jonit底盘+球-->
+     <joint name = "front2link" type = "continuous">
+      <parent   link = "base_link"/>
+      <child link = "front_wheel"/>
+      <!--z = 车体高度/2 + 离地间距 - 球半径-->
+      <origin xyz = "0.08 0 -0.0475" rpy = "0 0 0"/>
+      <axis xyz = "1 1 1"/>
+    </joint>
+    
+    <joint name = "back2link" type = "continuous">
+      <parent   link = "base_link"/>
+      <child link = "backt_wheel"/>
+      <!--z = 车体高度/2 + 离地间距- 球半径-->
+      <origin xyz = "-0.08 0  -0.0475" rpy = "0 0 0"/>
+      <axis xyz = "1 1 1"/>
+    </joint>
+
+</robot>

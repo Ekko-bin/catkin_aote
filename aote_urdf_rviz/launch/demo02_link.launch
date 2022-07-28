@@ -1,0 +1,9 @@
+<launch>
+
+    <!-- 设置参数 加载urdf文件  这个是固定的-->
+    <param name="robot_description"  textfile="$(find aote_urdf_rviz)/urdf/urdf/demo02_link.urdf" />
+
+    <!-- 启动 rviz                                     配置rviz的文件-->
+    <node pkg="rviz" type="rviz" name="rviz" />
+
+</launch>

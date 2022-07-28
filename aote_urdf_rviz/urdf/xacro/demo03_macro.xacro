@@ -1,0 +1,8 @@
+<robot name="mycar" xmlns:xacro="http://wiki.ros.org/xacro">
+   <!--宏定义      函数名字                   函数参数多个用空格隔开-->
+   <xacro:macro name = "getSum" params = "num1 num2" >
+       <jiabinresult value = "${num1 + num2}"/>
+    </xacro:macro>
+   <!--宏的调用:宏的名称  参数值-->
+   <xacro:getSum num1 = "1" num2 = "2" />
+</robot>    

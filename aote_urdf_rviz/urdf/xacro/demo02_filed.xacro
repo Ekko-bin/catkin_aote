@@ -1,0 +1,18 @@
+<robot name="mycar" xmlns:xacro="http://wiki.ros.org/xacro">
+   <!--属性定义-->
+   <xacro:property name = "PI" value = "3.1415936" />
+   <xacro:property name = "radius" value = "0.03"/>
+
+   <!--属性调用 -->
+   <myusseeee name = "${PI}"/>
+   <myusseeee name = "${radius}"/>
+
+   <!--算术运算-->
+   <myproproty result = "${PI / 2}"/>
+   <myproproty result = "${radius / 2}"/>
+
+
+
+
+   
+</robot>
